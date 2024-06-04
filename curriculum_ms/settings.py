@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-hqrv14zw-s8b3)(4z*nv32mxv=t^%l(-o9orjnu!7&)$_027*c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['buqlex.pythonanywhere.com']
 
 
 # Application definition
