@@ -1,0 +1,68 @@
+{% load static %}
+
+{% url 'login' as url_login %}
+{% url 'logout' as url_logout %}
+{% url 'home' as url_home %}
+{% url 'list_curriculums' as url_list %}
+{% url 'search_curriculum' as url_search %}
+{% url 'contact' as url_contact %}
+
+
+<!-- header-start -->
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area">
+            <div class="container-fluid ">
+                <div class="header_bottom_border">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div>
+                                <a href="{{ url_home }}">
+                                    <img class="logo" src="{% static 'img/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{{ url_home }}">Главная</a></li>
+                                        <li><a href="{{ url_list }}" target="_blank">Просмотреть УП</a></li>
+                                        <li><a href="{{ url_search }}">Поиск УП</a></li>
+                                        <li><a href="{{ url_contact }}">Контакты</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="Appointment">
+                                {% if user.is_authenticated %}
+                                <div class="phone_num d-none d-xl-block">
+                                    <a style="font-size: 16px; font-style: italic;">
+                                        {{ user.first_name }} {{ user.last_name }}
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="d-none d-lg-block">
+                                    {% if user.is_authenticated %}
+                                        <a class="boxed-btn3 btn-flare btn-flare-logout" href="{{ url_logout }}">
+                                            <i class="fa fa-user-circle" aria-hidden="true"></i> Выйти
+                                        </a>
+                                    {% else %}
+                                        <a class="boxed-btn3 btn-flare btn-flare" href="{{ url_login }}">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i> Войти
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-end -->

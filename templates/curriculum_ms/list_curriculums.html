@@ -1,0 +1,204 @@
+{% extends 'curriculum_ms/base.html' %}
+{% load static %}
+
+{% block title %}Список учебных планов{% endblock title %}
+
+{% block content %}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Список учебных планов</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+
+<!-- job_listing_area_start  -->
+<div class="job_listing_area plus_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="job_filter white-bg">
+                    <div class="form_inner white-bg">
+                        <h3>Фильтр</h3>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <input type="text" placeholder="Ключевое слово">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide">
+                                            <option data-display="Год набора">Год набора</option>
+                                            <option value="0">2020</option>
+                                            <option value="1">2021</option>
+                                            <option value="2">2022</option>
+                                            <option value="3">2023</option>
+                                            <option value="4">2024</option>
+                                            <option value="5">2025</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide">
+                                            <option data-display="Год выпуска">Год выпуска</option>
+                                            <option value="0">2020</option>
+                                            <option value="1">2021</option>
+                                            <option value="2">2022</option>
+                                            <option value="3">2023</option>
+                                            <option value="4">2024</option>
+                                            <option value="5">2025</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide">
+                                            <option data-display="Срок обучения">Срок обучения</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide">
+                                            <option data-display="Академический уровень">Академический уровень</option>
+                                            <option value="1">Бакалавр</option>
+                                            <option value="2">Специалист</option>
+                                            <option value="3">Магистр</option>
+                                            <option value="4">Аспирант</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide">
+                                            <option data-display="Форма обучения">Форма обучения</option>
+                                            <option value="1">Очная</option>
+                                            <option value="2">Заочная</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single_field">
+                                        <select class="wide">
+                                            <option data-display="Гражданство">Гражданство</option>
+                                            <option value="1">Россия</option>
+                                            <option value="2">Иностранец</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="reset_btn">
+                        <button  class="boxed-btn3 w-100" type="submit">Фильтровать</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="recent_joblist_wrap">
+                    <div class="recent_joblist white-bg ">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <h4>Сортировка</h4>
+                            </div>
+                            <div class="col-md-8 w-100">
+                                <div class="serch_cat d-flex justify-content-end w-100">
+                                    <select class="w-75">
+                                        <option data-display="Сортировка по дате (по возрастанию)">Сортировка по дате (по возрастанию)</option>
+                                        <option value="1">Сортировка по дате (по убыванию)</option>
+                                        <option value="2">Сортировка по названию (по возрастанию)</option>
+                                        <option value="4">Сортировка по названию (по убыванию)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="job_lists m-0">
+            <div class="row">
+            {% for curriculum in curriculums %}
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
+                            </div>
+                            <div class="jobs_conetent">
+                                <a href="{{ curriculum.get_url_detail_curriculum }}">
+                                    <h5>{{ curriculum.title }}</h5>
+                                </a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p> <i class="fa fa-university"></i>
+                                            {{ curriculum.university_abbreviation }} |
+                                            {{ curriculum.faculty }} ф. |
+                                            {{ curriculum.department }} каф.
+                                        </p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-graduation-cap"></i>
+                                            {{ curriculum.academic_level }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                            <div class="apply_now">
+                                <a href="{{ curriculum.get_url_edit_curriculum }}" class="boxed-btn3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                <div class="dropdown">
+                                    <a class="heart_mark" href="#">
+                                        <i class="ti-more-alt"></i>
+                                    </a>
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-content dropdown-content-icon">
+                                            <ul class="dropdown-list">
+                                                <li><a href="{{ curriculum.get_url_detail_curriculum }}"><i class="fa fa-external-link"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-files-o"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-font"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-check-square-o"></i></a></li> <!-- <i class="fa fa-square-o" aria-hidden="true"></i> -->
+                                                <li><a href="#"><i class="fa fa-trash"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <a class="dropdown-link" href="{{ curriculum.get_url_detail_curriculum }}"><i class="fa fa-external-link"></i> Подробности</a>
+                                        <a class="dropdown-link" href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-files-o"></i> Копировать</a>
+                                        <a class="dropdown-link" href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-font"></i> Переименовать</a>
+                                        <a class="dropdown-link" href="#" data-toggle="modal" data-target="#myModal3"><i class="fa fa-check-square-o"></i> Готов к расчетам</a> <!-- <i class="fa fa-square-o" aria-hidden="true"></i> -->
+                                        <a class="dropdown-link" href="#" data-toggle="modal" data-target="#myModal4"><i class="fa fa-trash"></i> Удалить</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="date">
+                                <p>Дата: {{ curriculum.date_last_changed }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- job_listing_area_end  -->
+
+{% endblock content %}

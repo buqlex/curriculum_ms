@@ -1,0 +1,46 @@
+{% extends 'curriculum_ms/base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock title %}
+
+{% block content %}
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_1">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-md-4">
+                    <div class="slider_text">
+                        <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">
+                            Войти в учетную запись
+                        </h5>
+                        <div class="apply_job_form sign-in-form" style="width: 300px; margin-left: 50px;">
+                            <form id="login" method="post">
+                                {% csrf_token %}
+                                <div class="single_input wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+                                    <label class="required form-control-input" for="id_username">Логин:</label>
+                                    <input type="text" class="form-control txt-green w-100" name="username" required id="id_username">
+                                </div>
+                                <div class="single_input wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">
+                                    <label class="required form-control-input" for="id_password">Пароль:</label>
+                                    <input type="password" class="txt-green form-control w-100" name="password" required id="id_password">
+                                </div>
+                                <div class="submit_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                                    <button type="submit" class="boxed-btn3 btn-flare w-100" style="margin-top: 40px;">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Войти
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
+        <img src="{% static 'img/banner/illustration.png' %}" alt="">
+    </div>
+</div>
+<!-- slider_area_end -->
+
+{% endblock content %}

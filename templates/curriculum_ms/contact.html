@@ -1,0 +1,133 @@
+{% extends 'curriculum_ms/base.html' %}
+{% load static %}
+
+{% block title %}Контакты разработчика{% endblock title %}
+
+{% block content %}
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Контакты разработчика</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <!-- ================ contact section start ================= -->
+    <section class="contact-section section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contact-title">Свяжитесь с нами</h2>
+                </div>
+                <div class="col-lg-8">
+                    <form class="form-contact contact_form" method="post" id="contactForm" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    {{ form.message }}
+                                    {% if form.message.errors %}
+                                        <div class="alert alert-danger">
+                                            {{ form.message.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{ form.name }}
+                                    {% if form.name.errors %}
+                                        <div class="alert alert-danger">
+                                            {{ form.name.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <div class="alert alert-danger">
+                                            {{ form.email.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    {{ form.subject }}
+                                    {% if form.subject.errors %}
+                                        <div class="alert alert-danger">
+                                            {{ form.subject.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="button button-contactForm btn_4 boxed-btn">Отправить
+                                сообщение
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-home"></i></span>
+                        <div class="media-body">
+                            <h3>Россия, город Ростов-на-Дону</h3>
+                            <p>проспект Солженицына <br> дом 24/23</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                        <div class="media-body">
+                            <h3>+7 (906) 542-97-77</h3>
+                            <p>ПН - ПТ 9 утра - 6 вечера</p>
+                        </div>
+                    </div>
+                    <div class="media contact-info">
+                        <span class="contact-info__icon"><i class="ti-email"></i></span>
+                        <div class="media-body">
+                            <h3>buqlex@gmail.com</h3>
+                            <p>Отправьте свой запрос в любое время!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ contact section end ================= -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', function (event) {
+                const name = document.getElementById('id_name');
+                const email = document.getElementById('id_email');
+                const subject = document.getElementById('id_subject');
+                const message = document.getElementById('id_message');
+
+                if (!name.value || !email.value || !subject.value || !message.value) {
+                    event.preventDefault();
+                    alert('Пожалуйста, заполните все поля');
+                } else if (!validateEmail(email.value)) {
+                    event.preventDefault();
+                    alert('Введите корректный адрес электронной почты');
+                }
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+        });
+    </script>
+
+{% endblock content %}

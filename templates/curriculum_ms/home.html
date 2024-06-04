@@ -1,0 +1,360 @@
+{% extends 'curriculum_ms/base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock title %}
+
+{% block content %}
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">
+                                4{{ curriculum_count }}+ Список учебных планов
+                            </h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">
+                                Найди свой учебный план
+                            </h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">
+                                Мы предлагаем удобное и быстрое веб-приложение для работы с учебными планами
+                            </p>
+                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                                {% url 'create_curriculum' as url_create %}
+                                <a href="{{ url_create }}" class="boxed-btn3 btn-flare btn-flare">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Создать учебный план
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s"
+             data-wow-delay=".2s">
+            <img src="{% static 'img/banner/illustration.png' %}" alt="">
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- search_area -->
+    <div class="catagory_area">
+        <div class="container">
+            <form action="{% url 'search_curriculum' %}">
+                {% csrf_token %}
+                <div class="row cat_search">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="single_input">
+                            <input type="text" placeholder="Ключевое слово для поиска">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="single_input">
+                            <input type="number" placeholder="Год набора" name="year_of_start">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="single_input">
+                            <input type="number" placeholder="Год выпуска" name="year_of_end">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        <div class="job_btn">
+                            <button type="submit" class="boxed-btn3">
+                                Найти учебный план
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="popular_search d-flex align-items-center">
+                            <span>Популярный поиск:</span>
+                            <ul>
+                                <li><a href="#">Бакалавр</a></li>
+                                <li><a href="#">ИКТИБ</a></li>
+                                <li><a href="#">Информатика и вычислительная техника</a></li>
+                                <li><a href="#">Системне програмування</a></li>
+                                <li><a href="#">2023-2025</a></li>
+                                <li><a href="#">ЮФУ</a></li>
+                                <li><a href="#">09.04.01</a></li>
+                                <li><a href="#">Очная</a></li>
+                                <li><a href="#">ВТ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/ search_area -->
+
+
+    <!-- curriculum_listing_area_start  -->
+    <div class="job_listing_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="section_title">
+                        <h3>Список учебных планов</h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="brouse_job text-right">
+                        {% url 'list_curriculums' as url_list %}
+                        <a href="{{ url_list }}" target="_blank" class="boxed-btn4">
+                            <i class="fa fa-list" aria-hidden="true"></i> Просмотреть другие УП
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="job_lists">
+                <div class="row">
+                    {% for curriculum in curriculums %}
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="single_jobs white-bg d-flex justify-content-between">
+                                <div class="jobs_left d-flex align-items-center">
+                                    <div class="thumb">
+                                        <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
+                                    </div>
+                                    <div class="jobs_conetent">
+                                        <a href="{{ curriculum.get_url_detail_curriculum }}">
+                                            <h5>{{ curriculum.title }}</h5>
+                                        </a>
+                                        <div class="links_locat d-flex align-items-center">
+                                            <div class="location">
+                                                <p><i class="fa fa-university"></i>
+                                                    {{ curriculum.university_abbreviation }} |
+                                                    {{ curriculum.faculty }} факультет |
+                                                    {{ curriculum.department }} кафедра
+                                                </p>
+                                            </div>
+                                            <div class="location">
+                                                <p><i class="fa fa-graduation-cap"></i>
+                                                    {{ curriculum.academic_level }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jobs_right">
+                                    <div class="apply_now">
+                                        <a href="{{ curriculum.get_url_edit_curriculum }}" class="boxed-btn3"><i
+                                                class="fa fa-pencil-square-o" aria-hidden="true"></i> Редактировать</a>
+                                        <div class="dropdown">
+                                            <a class="heart_mark" href="#">
+                                                <i class="ti-more-alt"></i>
+                                            </a>
+                                            <div class="dropdown-content">
+                                                <div class="dropdown-content dropdown-content-icon">
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="{{ curriculum.get_url_detail_curriculum }}"><i
+                                                                class="fa fa-external-link"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-files-o"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-font"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-check-square-o"></i></a></li>
+                                                        <!-- <i class="fa fa-square-o" aria-hidden="true"></i> -->
+                                                        <li><a href="#"><i class="fa fa-trash"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <a class="dropdown-link"
+                                                   href="{{ curriculum.get_url_detail_curriculum }}"><i
+                                                        class="fa fa-external-link"></i> Подробности</a>
+                                                <a class="dropdown-link" href="#" data-toggle="modal"
+                                                   data-target="#myModal1"><i class="fa fa-files-o"></i> Копировать</a>
+                                                <a class="dropdown-link" href="#" data-toggle="modal"
+                                                   data-target="#myModal2"><i class="fa fa-font"></i> Переименовать</a>
+                                                <a class="dropdown-link" href="#" data-toggle="modal"
+                                                   data-target="#myModal3"><i class="fa fa-check-square-o"></i> Готов к
+                                                    расчетам</a>
+                                                <!-- <i class="fa fa-square-o" aria-hidden="true"></i> -->
+                                                <a class="dropdown-link" href="#" data-toggle="modal"
+                                                   data-target="#myModal4"><i class="fa fa-trash"></i> Удалить</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="date">
+                                        <p>Дата: {{ curriculum.date_last_changed }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- curriculum_listing_area_end  -->
+
+
+    <!-- curriculum_searching_wrap  -->
+    <div class="job_searcing_wrap overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <h3>Ищете список учебных планов?</h3>
+                        <p>Мы предоставляем четкий перечень учебных планов и интуитивно понятный интерфейс с разными
+                            фильтрами и сортировкой для работы с ними</p>
+                        {% url 'list_curriculums' as url_list %}
+                        <a href="{{ url_list }}" target="_blank" class="boxed-btn3 btn-flare">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i> Просмотреть УП
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <h3>Ищете конкретный учебный план?</h3>
+                        {% url 'search_curriculum' as url_search %}
+                        <p>Мы обеспечиваем разумный и очень быстрый поиск учебных программ по ключевым словам и в
+                            пределах указанных лет обучения </p>
+                        <a href="{{ url_search }}" class="boxed-btn3 btn-flare"><i class="fa fa-search"
+                                                                                   aria-hidden="true"></i> Найти УП</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- curriculum_searching_wrap end  -->
+
+
+    <!-- Modal Copy -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Копирование УП</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-25"
+                                onclick="document.getElementById('invisible-btn').click()">Копировать
+                        </button>
+                        <button type="reset" class="btn btn-primary w-25">Отменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Rename -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Переименование УП</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-25">Переименовать</button>
+                        <button type="reset" class="btn btn-primary w-25">Отменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Release -->
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Отметить УП как "Готов к расчетам"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-25">Отметить</button>
+                        <button type="reset" class="btn btn-primary w-25">Отменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Delete -->
+    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Удаление УП</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-25">Удалить</button>
+                        <button type="reset" class="btn btn-primary w-25">Отменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Close the modal window on form submission
+            $('#myModal1 form').on('submit', function () {
+                $('#myModal1').modal('hide');
+            });
+
+            // Removing form field values on modal close
+            $('#myModal1').on('hidden.bs.modal', function () {
+                $('#myModal1 form')[0].reset();
+            });
+
+
+            // Close the modal window on form submission
+            $('#myModal2 form').on('submit', function () {
+                $('#myModal2').modal('hide');
+            });
+
+            // Removing form field values on modal close
+            $('#myModal2').on('hidden.bs.modal', function () {
+                $('#myModal2 form')[0].reset();
+            });
+
+
+            // Close the modal window on form submission
+            $('#myModal3 form').on('submit', function () {
+                $('#myModal3').modal('hide');
+            });
+
+            // Removing form field values on modal close
+            $('#myModal3').on('hidden.bs.modal', function () {
+                $('#myModal3 form')[0].reset();
+            });
+
+
+            // Close the modal window on form submission
+            $('#myModal4 form').on('submit', function () {
+                $('#myModal4').modal('hide');
+            });
+
+            // Removing form field values on modal close
+            $('#myModal4').on('hidden.bs.modal', function () {
+                $('#myModal4 form')[0].reset();
+            });
+
+        });
+    </script>
+
+
+{% endblock content %}

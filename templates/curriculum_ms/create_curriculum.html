@@ -1,0 +1,205 @@
+{% extends 'curriculum_ms/base.html' %}
+{% load static %}
+
+{% block title %}Создание учебного плана{% endblock title %}
+
+{% block content %}
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Создание учебного плана</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="job_details_area">
+    <div class="container">
+        <div class="row">
+            <!-- start edit form -->
+            <div class="col-lg-12">
+                <div class="apply_job_form white-bg">
+                    <h4>Название учебного плана генерируется автоматически</h4>
+                    <form action="{% url 'created_curriculum' %}" method="post" id="curriculum_form" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <!-- R O W  # 0  (H I D D E N) -->
+                            <input type="hidden" name="title" required id="id_title">
+                            <input type="hidden" value="{{ creator }}" name="creator" required id="id_creator">
+
+                            <!-- R O W  # 1 -->
+                            <div class="col-md-4">
+                                <div class="input_field">
+                                    <label class="required" for="id_university_abbreviation">Аббревиатура университета:</label>
+                                    <input type="text" name="university_abbreviation" value="ЮФУ" maxlength="10" required id="id_university_abbreviation">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input_field">
+                                    <label class="required" for="id_faculty">Факультет:</label>
+                                    <input type="text" name="faculty" value="ИКТИБ" required id="id_faculty">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input_field">
+                                    <label class="required" for="id_department">Кафедра</label>
+                                    <input type="text" name="department" value="ВТ" required id="id_department">
+                                </div>
+                            </div>
+
+                            <!-- R O W  # 2 -->
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_years_to_study">Срок обучения:</label>
+                                    <input type="text" name="years_to_study" maxlength="50" required id="id_years_to_study">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_year_of_start">Год набора:</label>
+                                    <input type="number" name="year_of_start" min="2000" required id="id_year_of_start">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_year_of_end">Год выпуска:</label>
+                                    <input type="number" name="year_of_end" min="2000" required id="id_year_of_end">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_enrollment_number">Номер набора:</label>
+                                    <input type="number" name="enrollment_number" min="0" required id="id_enrollment_number" placeholder="1">
+                                </div>
+                            </div>
+
+                            <!-- R O W  # 3 -->
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_academic_level">Академический уровень:</label>
+                                    <select class="w-100" name="academic_level" id="id_academic_level">
+                                        <option value="Бакалавр" selected>Бакалавр</option>
+                                        <option value="Специалист">Специалист</option>
+                                        <option value="Магистр">Магистр</option>
+                                        <option value="Аспирант">Аспирант</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_form_education">Форма обучения:</label>
+                                    <select class="w-100" name="form_education" id="id_form_education">
+                                        <option value="Очная" selected>Очная</option>
+                                        <option value="Заочная">Заочная</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_citizenship">Гражданство:</label>
+                                    <select class="w-100" name="citizenship" id="id_citizenship">
+                                        <option value="Россия" selected>Россия</option>
+                                        <option value="Иностранец">Иностранец</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input_field">
+                                    <label class="required" for="id_language_institution">Язык обучения:</label>
+                                    <select class="w-100" name="language_institution" id="id_language_institution">
+                                        <option value="Русский" selected>Русский</option>
+                                        <option value="Английский">Английский</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom: 20px;"></div>
+
+                            <!-- R O W  # 4 -->
+                            <div class="col-md-6">
+                                <div class="input_field">
+                                    <label class="required" for="id_branch_of_knowledge">Направление подготовки:</label>
+                                    <input type="text" name="branch_of_knowledge" maxlength="100" required id="id_branch_of_knowledge">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input_field">
+                                    <label class="required" for="id_speciality">Программа:</label>
+                                    <input type="text" name="speciality" maxlength="100" required id="id_speciality">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input_field">
+                                    <label class="required" for="id_education_program">Номер направления:</label>
+                                    <input type="text" name="education_program" maxlength="100" required id="id_education_program">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input_field">
+                                    <label for="id_speciality_addition_info">Дополнительная информация:</label>
+                                    <input type="text" name="speciality_addition_info" maxlength="150" id="id_speciality_addition_info">
+                                </div>
+                            </div>
+
+                            <!-- R O W  # 5 -->
+                            <div class="col-md-12">
+                                <div class="input_field">
+                                    <label for="id_subjects">Дисциплины:</label>
+                                    <select class="w-100" name="subjects" id="id_subjects" multiple>
+                                        <option value="1">Дисциплина: Высшая математика / Семестр: 1</option>
+                                        <option value="2">Дисциплина: Языковые компетенции / Семестр: 1</option>
+                                        <option value="3">Дисциплина: Гуманитарная или экономическая дисциплина по выбору / Семестр: 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom: 20px;"></div>
+
+                            <!-- R O W  # 6 -->
+                            <div class="col-md-4">
+                                <div class="submit_btn">
+                                    <button type="submit" id="id_create_curriculum" class="boxed-btn3 w-100">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Сохранить
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="submit_btn">
+                                    <button type="reset" class="boxed-btn3 w-100">
+                                        <i class="fa fa-undo" aria-hidden="true"></i> Очистить
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                {% url 'list_curriculums' as url_list %}
+                                <a href="{{ url_list }}" target="_blank" class="boxed-btn3 w-100">
+                                    <i class="fa fa-list-alt" aria-hidden="true"></i> Просмотреть УП
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end edit form -->
+        </div>
+    </div>
+</div>
+
+    <script>
+        const titleInput = document.querySelector('#id_title');
+        const yearStartInput = document.querySelector('#id_year_of_start');
+        const yearEndInput = document.querySelector('#id_year_of_end');
+        const specialityInput = document.querySelector('#id_speciality');
+        const programInput = document.querySelector('#id_education_program');
+        const yearsToStudyInput = document.querySelector('#id_years_to_study');
+        const additionInfoInput = document.querySelector('#id_speciality_addition_info');
+        const submitButton = document.querySelector('#id_create_curriculum');
+
+        submitButton.addEventListener('click', () =>
+          titleInput.value = `${yearStartInput.value}-${yearEndInput.value} ${specialityInput.value.substring(0, 3)} (${programInput.value}) (${yearsToStudyInput.value}) ${additionInfoInput.value}`);
+
+    </script>
+{% endblock content %}
