@@ -142,8 +142,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Add changes to settings
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = 'KEQHEMVR8ZP4MZDPTEL5H7GR'
+EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'buqlex.feedback@outlook.com'
