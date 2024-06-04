@@ -6,7 +6,7 @@ $(document).ready(function(){
     
     jQuery.validator.addMethod('answercheck', function (value, element) {
         return this.optional(element) || /^\bcat\b$/.test(value)
-    }, "type the correct answer -_-");
+    }, "Введите корректные вопросы -_-");
 
     // validate contactForm form
     $(function() {
@@ -35,22 +35,22 @@ $(document).ready(function(){
             },
             messages: {
                 name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
+                    required: "Да ладно, у тебя есть имя, не так ли?",
+                    minlength: "Ваше имя должно состоять как минимум из 2 символов"
                 },
                 subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
+                    required: "Да ладно, у тебя есть тема, не так ли?",
+                    minlength: "Ваша тема должна состоять как минимум из 4 символов"
                 },
                 number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
+                    required: "Да ладно, у Вас есть номер, не так ли?",
+                    minlength: "Ваш номер должен состоять как минимум из 5 символов"
                 },
                 email: {
-                    required: "no email, no message"
+                    required: "Нет электронной почты, нет сообщения"
                 },
                 message: {
-                    required: "um...yea, you have to write something to send this form.",
+                    required: "Хм... да, вам нужно что-то написать, чтобы отправить эту форму.",
                     minlength: "thats all? really?"
                 }
             },

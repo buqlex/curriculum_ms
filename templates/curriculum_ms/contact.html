@@ -4,7 +4,6 @@
 {% block title %}Обратная связь{% endblock title %}
 
 {% block content %}
-    <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
             <div class="row">
@@ -16,9 +15,7 @@
             </div>
         </div>
     </div>
-    <!--/ bradcam_area  -->
 
-    <!-- ================ contact section start ================= -->
     <section class="contact-section section_padding">
         <div class="container">
             <div class="row">
@@ -26,7 +23,7 @@
                     <h2 class="contact-title">Свяжитесь с нами</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="form-contact contact_form" method="post" action="{% url 'contact' %}" id="contactForm" novalidate="novalidate">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-12">
@@ -103,31 +100,4 @@
             </div>
         </div>
     </section>
-    <!-- ================ contact section end ================= -->
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('contactForm');
-            form.addEventListener('submit', function (event) {
-                const name = document.getElementById('id_name');
-                const email = document.getElementById('id_email');
-                const subject = document.getElementById('id_subject');
-                const message = document.getElementById('id_message');
-
-                if (!name.value || !email.value || !subject.value || !message.value) {
-                    event.preventDefault();
-                    alert('Пожалуйста, заполните все поля');
-                } else if (!validateEmail(email.value)) {
-                    event.preventDefault();
-                    alert('Введите корректный адрес электронной почты');
-                }
-            });
-
-            function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(String(email).toLowerCase());
-            }
-        });
-    </script>
-
 {% endblock content %}

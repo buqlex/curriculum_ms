@@ -1,11 +1,27 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Success</title>
-</head>
-<body>
-    <h1>Спасибо!</h1>
-    <p>Ваше сообщение успешно отправлено.</p>
-</body>
-</html>
+{% extends 'curriculum_ms/base.html' %}
+
+{% block title %}Сообщение отправлено{% endblock title %}
+
+{% block content %}
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Спасибо!</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact-section section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contact-title">Ваше сообщение успешно отправлено</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
