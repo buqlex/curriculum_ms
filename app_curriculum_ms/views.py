@@ -14,7 +14,6 @@ from .models import UniversityTeacher, Curriculum, Feedback  # Add import Feedba
 from .forms import LoginUserForm, CurriculumForm, FeedbackForm  # Add import FeedbackForm
 from django.core.mail import send_mail  # Add import send_mail
 from django.conf import settings  # Add import settings
-from django.core.mail import send_mail
 
 
 # =====| HOME |=====
@@ -162,12 +161,14 @@ def contact_view(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
+            # Отправка email
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
-            recipient_list = ['buqlex@hotmail.com']
+            recipient_list = ['buqlex.feedback@outlook.com']
 
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
             return redirect('success')
     else:
         form = FeedbackForm()
