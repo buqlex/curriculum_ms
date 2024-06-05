@@ -32,7 +32,8 @@ class CurriculumForm(forms.ModelForm):
 
 # Add Feedback from
 class FeedbackForm(forms.ModelForm):
-    """Form feedback"""
+    """Форма обратной связи"""
+
 
     class Meta:
         model = Feedback
@@ -43,9 +44,3 @@ class FeedbackForm(forms.ModelForm):
             'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тему'}),
             'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите сообщение'}),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Отправить сообщение'))

@@ -140,11 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'lionigni@gmail.com'
-EMAIL_HOST_PASSWORD = '899Google__Per_Fect5'
+EMAIL_HOST_USER = 'buqlex.feedback@outlook.com'
+EMAIL_HOST_PASSWORD = '12super5'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

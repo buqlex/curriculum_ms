@@ -156,7 +156,7 @@ class ModalView(LoginRequiredMixin, DetailView):
 
 # Add contact_view
 def contact_view(request):
-    """Contact page"""
+    """Страница обратной связи"""
 
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
@@ -165,11 +165,11 @@ def contact_view(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
-            recipient_list = ['ваш_email@example.com']
+            recipient_list = ['buqlex.feedback@outlook.com']  # Замените на вашу почту
 
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-            return redirect('success')  # перенаправление на страницу успеха
+            return redirect('success')  # Перенаправление на страницу успеха
     else:
         form = FeedbackForm()
 
@@ -177,4 +177,5 @@ def contact_view(request):
 
 
 def success_view(request):
+    """Страница успеха после отправки формы"""
     return render(request, 'curriculum_ms/success.html')
