@@ -10,10 +10,11 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 
-from .models import UniversityTeacher, Curriculum, Feedback  # Add import Feedback
-from .forms import LoginUserForm, CurriculumForm, FeedbackForm  # Add import FeedbackForm
-from django.core.mail import send_mail  # Add import send_mail
-from django.conf import settings  # Add import settings
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from django.shortcuts import render, redirect
+from .forms import FeedbackForm
 
 
 # =====| HOME |=====
@@ -176,19 +177,42 @@ def contact_view(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
-            recipient_list = ['buqlex.feedback@outlook.com']
+            recipient_list = ['your_recipient@example.com']  # Замените на свой адрес электронной почты получателя
 
-            response = send_mailgun_email(subject, message, from_email, recipient_list)
-            if response.status_code == 200:
-                return redirect('success')  # Перенаправляем на страницу успеха
-            else:
-                print(response.json())
+            # Функция отправки письма через SMTP-сервер
+            send_email(subject, message, from_email, recipient_list)
 
+            return redirect('success')  # Перенаправление на страницу успешной отправки
     else:
         form = FeedbackForm()
 
     return render(request, 'curriculum_ms/contact.html', {'form': form})
 
+def send_email(subject, message, from_email, to_emails):
+    """Отправляет электронное письмо через SMTP-сервер."""
 
-def success_view(request):
-    return render(request, 'curriculum_ms/success.html')
+    smtp_server = 'smtp-mail.outlook.com'
+    smtp_port = 587  # Обычно используется порт 587 для TLS
+    smtp_username = 'buqlex.feedback@outlook.com'
+    smtp_password = '12super5'
+
+    try:
+        # Создаем сообщение
+        msg = MIMEMultipart()
+        msg['From'] = from_email
+        msg['To'] = ', '.join(to_emails)
+        msg['Subject'] = subject
+
+        # Добавляем текст сообщения
+        msg.attach(MIMEText(message, 'plain'))
+
+        # Подключаемся к SMTP-серверу
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+
+        # Отправляем письмо
+        server.sendmail(from_email, to_emails, msg.as_string())
+        server.quit()
+    except Exception as e:
+        print("Произошла ошибка при отправке письма:", str(e))
