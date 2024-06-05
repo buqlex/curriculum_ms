@@ -6,7 +6,6 @@ from django.urls import reverse
 class UniversityTeacher(models.Model):
     """
     Преподаватель университета
-
     Таблица данных "University Teacher"
     непосредственно связана со встроенной таблицей "User"
     """
@@ -35,7 +34,6 @@ class UniversityTeacher(models.Model):
 class SubjectCurriculum(models.Model):
     """
     Дисциплина учебного плана
-
     Таблица данных "SubjectCurriculum"
     связана связью "много к многим" с таблицей "Curriculum"
     """
@@ -59,7 +57,6 @@ class SubjectCurriculum(models.Model):
 class Curriculum(models.Model):
     """
     Учебный план
-
     Таблица данных "Curriculum"
     связана связью "один ко многим" с таблицей "UniversityTeacher"
     """
@@ -129,3 +126,25 @@ class Curriculum(models.Model):
     class Meta:
         verbose_name = "Учебный план"
         verbose_name_plural = "Учебные планы"
+
+
+
+# Add Feedback model
+class Feedback(models.Model):
+    """
+    Модель для фидбэков в базе данных
+    """
+
+
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        verbose_name = "Feedback"
+        verbose_name_plural = "Feedbacks"

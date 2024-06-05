@@ -10,6 +10,11 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 
+from .models import UniversityTeacher, Curriculum, Feedback  # Add import Feedback
+from .forms import LoginUserForm, CurriculumForm, FeedbackForm  # Add import FeedbackForm
+from django.core.mail import send_mail  # Add import send_mail
+from django.conf import settings  # Add import settings
+
 
 # =====| HOME |=====
 
@@ -146,3 +151,30 @@ class ModalView(LoginRequiredMixin, DetailView):
 
     def get_queryset(self):
         return self.model.objects.filter(id=self.kwargs['pk'])
+
+
+
+# Add contact_view
+def contact_view(request):
+    """Contact page"""
+
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            # Отправка email
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            from_email = form.cleaned_data['email']
+            recipient_list = ['ваш_email@example.com']
+
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+            return redirect('success')  # перенаправление на страницу успеха
+    else:
+        form = FeedbackForm()
+
+    return render(request, 'curriculum_ms/contact.html', {'form': form})
+
+
+def success_view(request):
+    return render(request, 'curriculum_ms/success.html')

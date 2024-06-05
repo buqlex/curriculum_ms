@@ -22,4 +22,7 @@ urlpatterns = [
     path("create/curriculum/new/", views.CreatedCurriculumView.as_view(), name="created_curriculum"),
     path("update/curriculum/<int:pk>/", views.UpdatedCurriculumView.as_view(), name="updated_curriculum"),
     path("modal/<int:pk>/", views.ModalView.as_view(), name="modal"),
+
+    path('contact/', views.contact_view, name='contact'),
+    path('success/', views.success_view, name='success'),
 ]
