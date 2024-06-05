@@ -129,25 +129,3 @@ class Curriculum(models.Model):
     class Meta:
         verbose_name = "Учебный план"
         verbose_name_plural = "Учебные планы"
-
-
-
-# Add Feedback model
-class Feedback(models.Model):
-    """
-    Модель для фидбэков в базе данных
-    """
-
-
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    subject = models.CharField(max_length=200)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.subject
-
-    class Meta:
-        verbose_name = "Feedback"
-        verbose_name_plural = "Feedbacks"
