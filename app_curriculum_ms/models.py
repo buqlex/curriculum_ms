@@ -131,7 +131,9 @@ class Curriculum(models.Model):
 
 # Add Feedback model
 class Feedback(models.Model):
-    """Модель для обратной связи в базе данных"""
+    """
+    Модель для фидбэков в базе данных
+    """
 
     name = models.CharField(max_length=100)
     email = models.EmailField()

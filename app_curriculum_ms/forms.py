@@ -36,13 +36,12 @@ class FeedbackForm(forms.ModelForm):
 
     class Meta:
         model = Feedback
-        fields = ['name', 'email', 'subject', 'message', 'is_processed']
+        fields = ['name', 'email', 'subject', 'message']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите имя'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Введите электронный адрес'}),
             'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите тему'}),
             'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите сообщение'}),
-            'is_processed': forms.HiddenInput(),
         }
 
     def __init__(self, *args, **kwargs):
@@ -50,4 +49,3 @@ class FeedbackForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Отправить сообщение'))
-

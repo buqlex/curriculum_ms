@@ -165,15 +165,16 @@ def contact_view(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
-            recipient_list = ['buqlex.feedback@outlook.com']
+            recipient_list = ['ваш_email@example.com']
 
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-            # Save the feedback in the database
-            form.save()
-
-            return redirect('success')
+            return redirect('success')  # перенаправление на страницу успеха
     else:
         form = FeedbackForm()
 
     return render(request, 'curriculum_ms/contact.html', {'form': form})
+
+
+def success_view(request):
+    return render(request, 'curriculum_ms/success.html')
