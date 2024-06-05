@@ -14,7 +14,6 @@ from .models import UniversityTeacher, Curriculum, Feedback  # Add import Feedba
 from .forms import LoginUserForm, CurriculumForm, FeedbackForm  # Add import FeedbackForm
 from django.core.mail import send_mail  # Add import send_mail
 from django.conf import settings  # Add import settings
-import requests
 
 
 # =====| HOME |=====
@@ -181,7 +180,7 @@ def contact_view(request):
 
             response = send_mailgun_email(subject, message, from_email, recipient_list)
             if response.status_code == 200:
-                return redirect('success')
+                return redirect('success')  # Перенаправляем на страницу успеха
             else:
                 print(response.json())
 
@@ -193,4 +192,3 @@ def contact_view(request):
 
 def success_view(request):
     return render(request, 'curriculum_ms/success.html')
-

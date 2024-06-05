@@ -3,3 +3,4 @@ Pillow
 django-bootstrap-modal-forms
 django-crispy-forms
 crispy-bootstrap4
+requests
