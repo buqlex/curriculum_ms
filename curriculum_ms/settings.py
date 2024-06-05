@@ -138,13 +138,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Add changes to settings
 
-# Импорт настроек Django-Anymail
-ANYMAIL = {
-    "MAILGUN_API_KEY": "b5cf43cafd2ac044a170b627168b8660-a4da91cf-adc3a366",
-    "MAILGUN_SENDER_DOMAIN": "sandboxea3965f77d9e48be9e5ca887d41c92b7.mailgun.org",
-}
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'buqlex@gmail.com'
+EMAIL_HOST_PASSWORD = 'in14fGliam_SupeR26'  # Замените на ваш пароль от Mailgun
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# Установка Django-Anymail в качестве бэкенда для отправки электронной почты
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
