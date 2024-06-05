@@ -165,8 +165,7 @@ def contact_view(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
-            recipient_list = ['buqlex.feedback@outlook.com']  # Замените на вашу почту
-
+            recipient_list = ['buqlex@gmail.com']
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
             return redirect('success')  # Перенаправление на страницу успеха

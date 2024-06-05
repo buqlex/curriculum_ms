@@ -145,7 +145,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Email settings
 
 ANYMAIL = {
-    "SENDGRID_API_KEY": "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",
+    "SENDGRID_API_KEY": "key", # "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",
 }
 
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
