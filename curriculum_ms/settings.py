@@ -149,6 +149,6 @@ ANYMAIL = {
 }
 
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
-DEFAULT_FROM_EMAIL = "buqlex@gmail.com"
+DEFAULT_FROM_EMAIL = "buqlex@hotmail.com"
 
 
