@@ -131,15 +131,13 @@ class Curriculum(models.Model):
 
 # Add Feedback model
 class Feedback(models.Model):
-    """
-    Модель для фидбэков в базе данных
-    """
-
+    """Модель для обратной связи в базе данных"""
 
     name = models.CharField(max_length=100)
     email = models.EmailField()
     subject = models.CharField(max_length=200)
     message = models.TextField()
+    is_processed = models.BooleanField(default=False)  # New field
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
