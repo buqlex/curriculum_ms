@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'crispy_bootstrap4',
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -136,16 +137,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 # Add changes to settings
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'buqlex@gmail.com'
-EMAIL_HOST_PASSWORD = 'in14fGliam_SupeR26'  # Замените на ваш пароль от Mailgun
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": "<Ваш API-ключ Mailgun>",
+    "MAILGUN_SENDER_DOMAIN": '<Ваш домен Mailgun>',  # Не используйте sandbox домены!
+}
+
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "buqlex@gmail.com"
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
