@@ -142,12 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Add changes to settings
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'buqlex.feedback@outlook.com'
-EMAIL_HOST_PASSWORD = '12super5'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+MAILGUN_API_KEY = '68d7f41aaa4713a5f95e9627495b9cb4-a4da91cf-6b3df8ac'
+MAILGUN_DOMAIN = 'sandboxea3965f77d9e48be9e5ca887d41c92b7.mailgun.org'
+DEFAULT_FROM_EMAIL = 'buqlex.feedback@outlook.com'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

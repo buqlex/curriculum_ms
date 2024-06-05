@@ -153,6 +153,18 @@ class ModalView(LoginRequiredMixin, DetailView):
         return self.model.objects.filter(id=self.kwargs['pk'])
 
 
+def send_mailgun_email(subject, message, from_email, recipient_list):
+    return requests.post(
+        f"https://api.mailgun.net/v3/{settings.MAILGUN_DOMAIN}/messages",
+        auth=("api", settings.MAILGUN_API_KEY),
+        data={
+            "from": settings.DEFAULT_FROM_EMAIL,
+            "to": recipient_list,
+            "subject": subject,
+            "text": message,
+        },
+    )
+
 
 # Add contact_view
 def contact_view(request):
@@ -161,15 +173,17 @@ def contact_view(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            # Отправка email
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             from_email = form.cleaned_data['email']
             recipient_list = ['buqlex.feedback@outlook.com']
 
-            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+            response = send_mailgun_email(subject, message, from_email, recipient_list)
+            if response.status_code == 200:
+                return redirect('success')
+            else:
+                print(response.json())
 
-            return redirect('success')
     else:
         form = FeedbackForm()
 
@@ -178,3 +192,4 @@ def contact_view(request):
 
 def success_view(request):
     return render(request, 'curriculum_ms/success.html')
+
