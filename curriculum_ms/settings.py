@@ -145,8 +145,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Email settings
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": "<Ваш API-ключ Mailgun>",
-    "MAILGUN_SENDER_DOMAIN": '<Ваш домен Mailgun>',  # Не используйте sandbox домены!
+    "MAILGUN_API_KEY": "d957e0c3941a12527b05722a64f9e577-a4da91cf-3797ce83",
+    "MAILGUN_SENDER_DOMAIN": 'sandboxea3965f77d9e48be9e5ca887d41c92b7.mailgun.org',
 }
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
