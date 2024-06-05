@@ -24,52 +24,8 @@
                 </div>
                 <div class="col-lg-8">
                     <form class="form-contact contact_form" method="post" action="{% url 'contact' %}" id="contactForm" novalidate="novalidate">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    {{ form.message }}
-                                    {% if form.message.errors %}
-                                        <div class="alert alert-danger">
-                                            {{ form.message.errors }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {{ form.name }}
-                                    {% if form.name.errors %}
-                                        <div class="alert alert-danger">
-                                            {{ form.name.errors }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {{ form.email }}
-                                    {% if form.email.errors %}
-                                        <div class="alert alert-danger">
-                                            {{ form.email.errors }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    {{ form.subject }}
-                                    {% if form.subject.errors %}
-                                        <div class="alert alert-danger">
-                                            {{ form.subject.errors }}
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group mt-3">
-                            <button type="submit" class="button button-contactForm btn_4 boxed-btn">Отправить
-                                сообщение
+                            <button type="submit" class="button button-contactForm btn_4 boxed-btn">Отправить сообщение
                             </button>
                         </div>
                     </form>
