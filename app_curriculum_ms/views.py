@@ -14,6 +14,7 @@ from .models import UniversityTeacher, Curriculum, Feedback  # Add import Feedba
 from .forms import LoginUserForm, CurriculumForm, FeedbackForm  # Add import FeedbackForm
 from django.core.mail import send_mail  # Add import send_mail
 from django.conf import settings  # Add import settings
+import requests
 
 
 # =====| HOME |=====
