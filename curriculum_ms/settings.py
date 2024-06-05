@@ -139,11 +139,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Add changes to settings
-
-# Email settings
-MAILGUN_API_KEY = '68d7f41aaa4713a5f95e9627495b9cb4-a4da91cf-6b3df8ac'
-MAILGUN_DOMAIN = 'sandboxea3965f77d9e48be9e5ca887d41c92b7.mailgun.org'
-DEFAULT_FROM_EMAIL = 'buqlex.feedback@outlook.com'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
