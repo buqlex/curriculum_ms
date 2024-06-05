@@ -145,11 +145,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Email settings
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": "d957e0c3941a12527b05722a64f9e577-a4da91cf-3797ce83",
-    "MAILGUN_SENDER_DOMAIN": 'sandboxea3965f77d9e48be9e5ca887d41c92b7.mailgun.org',
+    "SENDGRID_API_KEY": "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",
 }
 
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "buqlex@gmail.com"
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+DEFAULT_FROM_EMAIL = "buqlex.feedback@outlook.com"
 
 
