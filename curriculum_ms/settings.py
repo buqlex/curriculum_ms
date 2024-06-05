@@ -40,9 +40,6 @@ INSTALLED_APPS = [
 
     'bootstrap_modal_forms',
     'app_curriculum_ms',
-
-    'crispy_forms',
-    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [

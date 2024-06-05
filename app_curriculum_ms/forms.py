@@ -1,10 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 
-from .models import User, Curriculum, Feedback  # Add import Feedback
-from crispy_forms.helper import FormHelper  # Add import FormHelper
-from crispy_forms.layout import Submit  # Add import Submit
-
 
 class LoginUserForm(AuthenticationForm, forms.ModelForm):
     """Login form"""
