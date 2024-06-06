@@ -3,6 +3,7 @@
 
 {% block title %}Главная страница{% endblock title %}
 
+
 {% block content %}
 <!-- slider_area_start -->
 <div class="slider_area">
@@ -29,10 +30,18 @@
                                     <button type="submit" class="boxed-btn3 btn-flare w-100" style="margin-top: 40px;">
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Войти
                                     </button>
-                                    <hr>
-                                    <a href="{% url 'account_login' 'google' %}" class="btn btn-primary">
-                                        Войти через Google
+                                </div>
+                                <div class="submit_btn wow fadeInLeft" data-wow-duration="2s" data-wow-delay=".5s">
+                                    <button class="boxed-btn3 btn-flare w-100" style="margin-top: 40px; background: rgba(255, 255, 255, 0.9); border: white">
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}" style="color: white" class="google-link">
+                                        <i class="fa fa-google" aria-hidden="true" style="color: #4285F4;"></i>
+                                        <span class="google-letter" style="transition:color 0.3s; color: #DB4437;">o</span>
+                                        <span class="google-letter" style="transition:color 0.3s; color: #F4B400;">o</span>
+                                        <span class="google-letter" style="transition:color 0.3s; color: #4285F4;">g</span>
+                                        <span class="google-letter" style="transition:color 0.3s; color: #0F9D58;">l</span>
+                                        <span class="google-letter" style="transition:color 0.3s; color: #DB4437;">e</span>
                                     </a>
+                                </button>
                                 </div>
                             </form>
                         </div>
@@ -46,5 +55,13 @@
     </div>
 </div>
 <!-- slider_area_end -->
-
+    
+<!-- JavaScript для управления цветом при наведении -->
+<script>
+    document.querySelector('.google-btn').addEventListener('mouseleave', function() {
+        document.querySelectorAll('.google-letter').forEach(letter => {
+            letter.style.color = 'white';
+        });
+    });
+</script>
 {% endblock content %}

@@ -10,6 +10,9 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from django.views.generic.base import View
 from django.views.generic.detail import SingleObjectMixin
 
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
 from .models import UniversityTeacher, Curriculum, Feedback  # Add import Feedback
 from .forms import LoginUserForm, CurriculumForm, FeedbackForm  # Add import FeedbackForm
 from django.core.mail import send_mail  # Add import send_mail

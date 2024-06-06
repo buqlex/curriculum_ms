@@ -38,11 +38,7 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'app_curriculum_ms',
 
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    'social_django',
 
     'crispy_forms',
     'crispy_bootstrap4',
@@ -60,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'allauth.account.middleware.AccountMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'curriculum_ms.urls'
@@ -77,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -153,32 +150,19 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Add changes to settings
 
 # Auth settings
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
+]
 
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'  # или 'mandatory'
-ACCOUNT_EMAIL_REQUIRED = True
 
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        'OAUTH_PKCE_ENABLED': True,
-    }
-}
-
-SOCIAL_AUTH_GOOGLE_CLIENT_ID = '620905988228-ocmh9qgmldod341avl4fe8fl77muvlvb.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '801431972042-4i6rccfitfjsl43mbg6sccll7bhso509.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 
 # Email settings

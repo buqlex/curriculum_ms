@@ -1,4 +1,6 @@
+from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 from . import views
 
@@ -7,8 +9,8 @@ urlpatterns = [
     path("", views.HomeView.as_view(), name="home"),
 
     # =====| AUTH |=====
-    path("accounts/login/", views.SignInView.as_view(), name="login"),
-    path("accounts/logout/", views.LogoutView.as_view(), name="logout"),
+    path("login/", views.SignInView.as_view(), name="login"),
+    path("logout/", views.LogoutView.as_view(), name="logout"),
 
     # =====| PAGE |=====
     path("create/curriculum/", views.CreateCurriculumView.as_view(), name="create_curriculum"),
@@ -23,8 +25,9 @@ urlpatterns = [
     path("update/curriculum/<int:pk>/", views.UpdatedCurriculumView.as_view(), name="updated_curriculum"),
     path("modal/<int:pk>/", views.ModalView.as_view(), name="modal"),
 
-    # path("", include("app_curriculum_ms.urls")),
-    path('accounts/', include('allauth.urls')),
+
+    path('admin/', admin.site.urls),
+    path('social-auth/', include('social_django.urls', namespace='social')),
 
     path('contact/', views.contact_view, name='contact'),
     path('success/', views.success_view, name='success'),
