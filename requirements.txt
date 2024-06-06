@@ -3,4 +3,7 @@ Pillow
 django-bootstrap-modal-forms
 django-crispy-forms
 crispy-bootstrap4
+cryptography
+PyJWT
+django-allauth
 django-anymail

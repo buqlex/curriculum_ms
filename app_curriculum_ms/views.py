@@ -172,7 +172,7 @@ def contact_view(request):
     else:
         form = FeedbackForm()
 
-    return render(request, 'curriculum_ms/contact.html', {'form': form})
+    return render(request, 'curriculum_ms/feedback.html', {'form': form})
 
 
 def success_view(request):

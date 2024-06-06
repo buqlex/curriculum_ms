@@ -22,7 +22,7 @@ SECRET_KEY = 'django-insecure-hqrv14zw-s8b3)(4z*nv32mxv=t^%l(-o9orjnu!7&)$_027*c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['buqlex.pythonanywhere.com']
+ALLOWED_HOSTS = ['buqlex.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -38,10 +38,18 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'app_curriculum_ms',
 
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     'crispy_forms',
     'crispy_bootstrap4',
     'anymail',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'curriculum_ms.urls'
@@ -141,6 +151,35 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Add changes to settings
+
+# Auth settings
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # или 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
+SOCIAL_AUTH_GOOGLE_CLIENT_ID = '620905988228-ocmh9qgmldod341avl4fe8fl77muvlvb.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_SECRET = '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'
+
 
 # Email settings
 
