@@ -31,9 +31,8 @@
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Войти
                                     </button>
                                 </div>
-                                <div class="submit_btn wow fadeInLeft" data-wow-duration="2s" data-wow-delay=".5s">
-                                    <button class="boxed-btn3 btn-flare w-100" style="margin-top: 40px; background: rgba(255, 255, 255, 0.9); border: white">
-                                    <a href="{% url 'social:begin' 'google-oauth2' %}" style="color: white" class="google-link">
+                                <div class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay=".5s">
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}"style=" margin-top: 40px; background: rgba(255, 255, 255, 0.9); border: white; color: white" class="boxed-btn3 btn-flare w-100 google-link">
                                         <i class="fa fa-google" aria-hidden="true" style="color: #4285F4;"></i>
                                         <span class="google-letter" style="transition:color 0.3s; color: #DB4437;">o</span>
                                         <span class="google-letter" style="transition:color 0.3s; color: #F4B400;">o</span>
@@ -41,7 +40,6 @@
                                         <span class="google-letter" style="transition:color 0.3s; color: #0F9D58;">l</span>
                                         <span class="google-letter" style="transition:color 0.3s; color: #DB4437;">e</span>
                                     </a>
-                                </button>
                                 </div>
                             </form>
                         </div>
@@ -54,14 +52,6 @@
         <img src="{% static 'img/banner/illustration.png' %}" alt="">
     </div>
 </div>
-<!-- slider_area_end -->
     
-<!-- JavaScript для управления цветом при наведении -->
-<script>
-    document.querySelector('.google-btn').addEventListener('mouseleave', function() {
-        document.querySelectorAll('.google-letter').forEach(letter => {
-            letter.style.color = 'white';
-        });
-    });
-</script>
+<!-- slider_area_end -->
 {% endblock content %}
